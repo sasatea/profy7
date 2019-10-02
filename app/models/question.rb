@@ -12,6 +12,10 @@ class Question < ApplicationRecord
   def user_answer(user_id)
     Answer.find_by(user_id: user_id, question_id: id)
   end
+  
+  def answered?(user)
+    answers.exists?(user_id: user.id)
+  end
 
   private
   def create_feed_content
